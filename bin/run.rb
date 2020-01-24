@@ -1,25 +1,31 @@
 require_relative '../config/environment'
+ActiveRecord::Base.logger = nil
 
 cli = CommandLineInterface.new
+
 cli.greet
+puts "-------------------------"
 cli.question
-cli.handle_artist_commissioners
+puts "-------------------------"
+cli.artist_commissioners
+puts "-------------------------"
 cli.find_murals_by_zip 
+puts "-------------------------"
 cli.find_locations_of_artist_murals
+puts "-------------------------"
+cli.commissioners_artists 
+puts "-------------------------"
+cli.create_artist
+puts "-------------------------"
+cli.create_commissioner
+puts "-------------------------"
+cli.update_installment_year
+puts "-------------------------"
+cli.mural_no_longer_commissioned
 
 
 
 
 
 
-# puts "Do you like artist? Yes or no"
-# answer = gets.chomp
 
-# if answer == "Yes"
-#     puts "Great"
-# else
-#     puts "This won't be fun for you."
-# end
-
-
-puts "hello world"
