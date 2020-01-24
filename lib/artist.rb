@@ -12,12 +12,12 @@ class Artist < ActiveRecord::Base
 # Frillz.murals.find_by(zip: 60647)
     
 
-    def supporting_commissioners
-        # I should be able to find all of the commissoners for an artist
-        # self.find_by(name: "City of Chicago")
-        self.murals.map do |m|
-            m.commissioner_id
-        end
-    end
+    # def supporting_commissioners
+    #     # I should be able to find all of the commissoners for an artist
+    #     # self.find_by(name: "City of Chicago")
+    #     self.murals.map do |m|
+    #         m.commissioner_id
+    #     end
+    # end
 
 end
