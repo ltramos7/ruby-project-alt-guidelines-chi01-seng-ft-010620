@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2020_01_22_190454) do
   end
 
   create_table "murals", force: :cascade do |t|
+    t.string "name"
     t.integer "artist_id"
     t.integer "commissioner_id"
     t.integer "zip"

@@ -165,28 +165,27 @@ class CommandLineInterface
     def update_installment_year
         
         puts "You found out the year of installment of a mural is wrong. Let's update it"
-        puts "Please select the id to update it's installment year."
+        puts "Please select the name to update it's installment year."
 
         puts "\n"
        
         Mural.all.map do |mural|
-            puts mural.id
+            puts mural.name
             puts mural.year_installed
         end
 
-        mural_id = gets.chomp
+        mural_name = gets.chomp
 
-        if mural = Mural.find_by(id: mural_id)
+        if mural = Mural.find_by(name: mural_name)
             puts "Please enter the year of the correct installment year."
         end
         correct_year = gets.chomp
     
-        
         mural.update(year_installed: correct_year)
 
         puts "\n"
 
-        puts "Mural #{mural.id} installment year is now #{mural.year_installed}."
+        puts "Mural #{mural.name} installment year is now #{mural.year_installed}."
         
         puts "\n"
     end
@@ -205,23 +204,21 @@ class CommandLineInterface
         commissioner_selected = gets.chomp
 
         if commissioner = Commissioner.find_by(name: commissioner_selected)
-            puts "Please select the mural id that is no longer commissioned."
-            # commissioner
+            puts "Please select the mural name that is no longer commissioned."
+            puts "------------------------------------"
         else
             puts "That was not a valid option. Please type the name again."
             self.mural_no_longer_commissioned
         end
 
         commissioner.murals.map do |mural|
-            puts mural.id
+            puts mural.name
         end
+        puts "------------------------------------"
 
         mural_selected = gets.chomp
-        puts mural_selected.to_i
-        
-        if mural = Mural.find_by(id: mural_selected)
-            mural.destroy
-        end
+
+        Mural.find_by(name: mural_selected).destroy
 
         puts "\n"
 
@@ -229,14 +226,11 @@ class CommandLineInterface
 
         puts "\n"
 
-        Mural.all.map do |mural|
-            puts mural.id
-        end
 
-        # commissioner.murals.map do |mural|
-        #     puts mural.id
-        # end
-        puts "\n"
+        commissioner.murals.map do |mural|
+            puts mural.name
+        end
+        
     end
 
     def user_done
@@ -258,7 +252,6 @@ class CommandLineInterface
         puts "8. Cancel a mural"
         puts "9. Done."
 
-        
 
         user_choice = gets.chomp
 
